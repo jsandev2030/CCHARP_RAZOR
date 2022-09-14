@@ -1,0 +1,92 @@
+﻿@page
+@model chas_medicinais.Pages.Loja.EditModel
+@{
+    ViewData["Title"] = "Editar";
+}
+<br />
+<h1>@ViewData["Title"]</h1>
+<br />
+<h2 class="text-info">Edita o chá selecionado</h2>
+
+<div class="border container" style="padding:30px;">
+    <form method="post">
+        <input type="hidden" asp-for="Tea.Id" />
+        <!-- A linha de cima evita a excepção de não encontrar o "ID" -->
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <!--enctype="multipart/form-data" para imagem-->
+        <div class="text-danger"
+             asp-validation-summary="ModelOnly"></div>
+        <!--  Titulo do tea -->
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Tea.Titulo"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Tea.Titulo"
+                       class="form-control" />
+            </div>
+            <span asp-validation-for="Tea.Titulo"
+                  class="text-danger"></span>
+        </div>
+        <!--  Detalhes do tea -->
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Tea.Detalhes"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Tea.Detalhes"
+                       class="form-control" />
+            </div>
+            <span asp-validation-for="Tea.Detalhes"
+                  class="text-danger"></span>
+        </div>
+        <!--  Curas do tea -->
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Tea.Curas"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Tea.Curas"
+                       class="form-control" />
+            </div>
+            <span asp-validation-for="Tea.Curas"
+                  class="text-danger"></span>
+        </div>
+        <!-- Autor do tea   -->
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Tea.Autor"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Tea.Autor"
+                       class="form-control" />
+            </div>
+            <span asp-validation-for="Tea.Autor"
+                  class="text-danger"></span>
+        </div>
+        <!-- Imagem do tea -->
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Tea.Imagem"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Tea.Imagem"
+                       class="form-control" />
+            </div>
+            <span asp-validation-for="Tea.Imagem"
+                  class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3 offset-3">
+                <input type="submit" value="Atualizar" class="btn btn-outline-primary form-control btn-sm" />
+            </div>
+            <div class="col-3">
+                <a asp-page="Index" class="btn btn-outline-warning form-control btn-sm">Voltar</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

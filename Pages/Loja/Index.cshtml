@@ -1,0 +1,101 @@
+﻿@page
+@model chas_medicinais.Pages.Loja.IndexModel
+@{
+    ViewData["Title"] = "Loja de Chás";
+}
+<br />
+<h1>@ViewData["Title"]</h1>
+
+<br />
+<div class="container row p-0 m-0">
+    <!-- Contentor Bootstrap -->
+
+    <!--  Título da Página   -->
+    <div class="col-9">
+        <h2 class="text-info">Tea House</h2>
+    </div>
+    <!--  Hiperligação para criar novo Livro    -->
+    <div class="col-3">
+        <a asp-page="Create"
+           class="btn btn-info btn-sm text-white float-right">Inserir</a>
+    </div>
+
+    <div class="col-12 border p-3 mt-3">
+        <form method="post">
+            @if (Model.Tea.Count() > 0)  // Razor sign @ -> C# syntax
+            { // Se houverem livros -> apresenta uma tabela
+                <table class="table table-hover">
+                    <tr class="table-secondary">
+                        <!-- Cabeçalho da Tabela -->
+                        <th>
+                            <label asp-for="Tea.FirstOrDefault().Imagem">
+
+                            </label>
+                        </th>
+                        <th>
+                            <label asp-for="Tea.FirstOrDefault().Titulo">
+
+                            </label>
+                        </th>
+                        <th>
+                            <label asp-for="Tea.FirstOrDefault().Detalhes">
+
+                            </label>
+                        </th>
+                        <th>
+                            <label asp-for="Tea.FirstOrDefault().Curas">
+
+                            </label>
+                        </th>
+                        <th>
+                            <label asp-for="Tea.FirstOrDefault().Autor">
+
+                            </label>
+                        </th>                        
+                        <th></th>
+                        <th></th>
+                    </tr>
+
+                    <!-- Dados da Tabela -->
+                    @foreach (var item in Model.Tea)
+                    {
+                        <tr>
+                            <td style="width:200px;">
+                                <img src="@Html.DisplayFor(m => item.Imagem)" width="100%" height="auto" title="Chá Verde" />
+                            </td>
+                            <td style="width:100px;">
+                                @Html.DisplayFor(m => item.Titulo)
+                            </td>
+                            <td style="width:220px;">
+                                @Html.DisplayFor(m => item.Detalhes)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.Curas)
+                            </td>
+                            <td style="width:100px;">
+                                @Html.DisplayFor(m => item.Autor)
+                            </td>
+                            <td>
+                                <!-- Botão de "Delete"      -->
+                                <button asp-page-handler="Delete"
+                                asp-route-id="@item.Id"
+                                onclick="return confirm('Quer mesmo apagar este registo?')"
+                                class="btn btn-danger btn-sm text-white">
+                                    Apagar
+                                </button>
+                            </td>
+                            <td>
+                                <!-- Botão de "Edit" -->
+                                <a asp-page="Edit" asp-route-id="@item.Id"
+                               class="btn btn-success btn-sm text-white">Editar</a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {  // Se não houverem chás
+                <p> Não existem chás para mostrar.</p>
+            }
+        </form>
+    </div>
